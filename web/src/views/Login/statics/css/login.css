@@ -1,0 +1,26 @@
+@import "../../../../utils/colors.css";
+
+@media only screen and (min-width: 1280px) {
+  .login_root {
+    width: 100%;
+    flex-grow: 1;
+  }
+  .login_logoBox {
+    padding: 25px 0px 0px 30px;
+  }
+  .login_image {
+    width: 170px;
+    object-fit: contain;
+  }
+
+  .login_loginBoxContainer {
+    width: 100% !important;
+    margin-bottom: 30px !important;
+  }
+}
+
+@media only screen and (min-width: 1920px) {
+  .login_logoBox {
+    padding: 30px 0px 30px 30px;
+  }
+}

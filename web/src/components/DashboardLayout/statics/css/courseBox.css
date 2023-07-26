@@ -1,0 +1,80 @@
+@import "../../../../utils/colors.css";
+
+@media only screen and (min-width: 1280px) {
+  .courseBox_root {
+    min-height: 300px;
+    border-radius: 25px;
+    position: relative;
+    margin: 0px auto;
+    background: var(--secondary);
+    border: 1px solid var(--grey6);
+  }
+  .courseBox_courseTextTitle {
+    margin: 0px;
+    font-size: 1.5em;
+    height: 2em;
+    font-weight: bold;
+    position: relative;
+    margin-top: 10px;
+    top: 10px;
+    text-indent: 30px;
+    margin-bottom: 20px;
+  }
+  .courseBox_courseDetailBoxContainer {
+    width: 100%;
+    position: relative;
+  }
+  .courseBox_courseDetailBox {
+  }
+  .courseBox_courseTextCode {
+    text-indent: 30px;
+    font-size: 1.2em;
+    font-weight: bold;
+    position: relative;
+    list-style-type: none;
+  }
+  .courseBox_courseTextCodeSelected {
+    width: 85%;
+    font-size: 1.2em;
+    font-weight: bold;
+    position: relative;
+    list-style-type: none;
+    color: var(--red4);
+  }
+  .courseBox_courseTextName {
+    font-size: 0.6em;
+    font-weight: 600;
+    position: relative;
+    list-style-type: none;
+    color: var(--grey1);
+  }
+  .courseBox_courseTextCredit {
+    font-size: 0.7em;
+    font-weight: 400;
+    position: absolute;
+    top: 0px;
+    right: 20px;
+    list-style-type: none;
+    color: var(--grey1);
+  }
+}
+@media only screen and (min-width: 1920px) {
+  .courseBox_root {
+    min-height: 500px;
+  }
+  .courseBox_courseTextTitle {
+    font-size: 2em;
+    height: 2.5em;
+    text-indent: 40px;
+  }
+  .courseBox_courseTextCode {
+    text-indent: 40px;
+    font-size: 1.4em;
+  }
+  .courseBox_courseTextCodeSelected {
+    font-size: 1.4em;
+  }
+  .courseBox_courseTextCredit {
+    right: 30px;
+  }
+}

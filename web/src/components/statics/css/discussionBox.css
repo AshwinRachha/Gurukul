@@ -1,0 +1,107 @@
+@import "../../../utils/colors.css";
+
+@media only screen and (min-width: 720px) {
+  .discussionBox_discussionBoxContainer {
+    width: 500px;
+  }
+  .discussionBox_chatBox {
+    position: relative;
+    width: 500px;
+    height: 500px;
+    overflow: auto;
+    overflow-x: hidden;
+    margin-bottom: 10px !important;
+  }
+
+  .discussionBox_messageRoot {
+    position: absolute;
+  }
+
+  .discussionBox_inputField {
+    margin-bottom: 10px !important;
+  }
+  .discussionBox_textFieldRoot {
+  }
+  .discussionBox_textField {
+    padding: 15px;
+    width: 450px;
+    min-width: 450px;
+    border-radius: 10px;
+    border: 1px solid var(--grey6);
+  }
+  .discussionBox_textField:focus {
+    outline: none;
+  }
+  .discussionBox_sendButtonContainer {
+    width: 50px !important;
+    height: 50px !important;
+    border-radius: 50%;
+    margin: 2px !important;
+    position: relative !important;
+  }
+
+  .discussionBox_sendButtonContainer:hover {
+    background: var(--green2);
+    background: radial-gradient(
+      circle,
+      rgba(0, 194, 165, 1) 0%,
+      rgba(0, 194, 165, 0.23) 0%
+    );
+  }
+  .discussionBox_sendButton {
+    position: relative !important;
+    top: 8px;
+    left: 5px;
+  }
+  .discussionBox_root {
+    height: 650px;
+    margin: 0px auto !important;
+    background: var(--white);
+    border-radius: 15px;
+    border: 1px solid var(--grey6);
+  }
+  .discussionBox_discussionBoxInside {
+  }
+  .discussionBox_discussionBoxTop {
+  }
+  .discussionBox_smallBlueBox {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--blue);
+    position: relative;
+    margin-left: 20px !important;
+  }
+  .discussionBox_discussionBoxTitle {
+    position: relative;
+    left: 15px;
+    font-size: 1.3em;
+  }
+}
+@media only screen and (min-width: 1920px) {
+  .discussionBox_discussionBoxContainer {
+    width: 700px;
+    height: 700px;
+  }
+  .discussionBox_chatBox {
+    position: relative;
+    width: 700px;
+    height: 620px;
+  }
+  .discussionBox_textField {
+    width: 610px;
+  }
+  .discussionBox_root {
+    width: 95% !important;
+    height: 800px !important;
+  }
+
+  .discussionBox_discussionBoxTop {
+    width: 100%;
+    height: 100px;
+  }
+
+  .discussionBox_discussionBoxBottom {
+    height: 720px;
+  }
+}

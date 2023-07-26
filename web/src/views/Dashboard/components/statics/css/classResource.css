@@ -1,0 +1,77 @@
+@import "../../../../../utils/colors.css";
+@media only screen and (min-width: 1920px) {
+  .classResource_root {
+    width: 320px !important;
+    flex-grow: 1;
+    height: 85px;
+    cursor: pointer;
+  }
+  .classResource_resourceList {
+    width: 230px;
+    list-style-type: none;
+    font-size: 1.1em;
+    font-weight: 500;
+  }
+  .classResource_resourceList p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+  }
+  .classResource_resourceList:hover {
+    color: var(--red4);
+  }
+  .classResource_resourceIcon {
+  }
+  .classResource_resourceListContainer {
+    width: 250px;
+    margin-left: 22px !important;
+  }
+  .classResource_resourceListContainer a {
+    color: black;
+    text-decoration: none;
+  }
+  .classResource_seperator {
+    width: 85%;
+    border-bottom: 1px solid var(--grey1);
+    position: relative;
+    top: 15px;
+    opacity: 0.8;
+  }
+  .classResource_resourceListTimeText {
+    list-style-type: none;
+    font-size: 1em;
+    color: var(--grey1);
+  }
+}
+
+@media only screen and (max-width: 1919px) {
+  .classResource_root {
+    flex-grow: 1;
+    height: 80px;
+    cursor: pointer;
+  }
+  .classResource_resourceList {
+    list-style-type: none;
+    font-size: 0.8em;
+    font-weight: 500;
+  }
+  .classResource_resourceList:hover {
+    color: var(--red4);
+  }
+  .classResource_resourceIcon {
+    width: 20%;
+  }
+  .classResource_resourceListContainer {
+    width: 80%;
+  }
+  .classResource_seperator {
+    width: 70%;
+    border-bottom: 1px solid var(--grey1);
+    opacity: 0.8;
+  }
+  .classResource_resourceListTimeText {
+    list-style-type: none;
+    font-size: 0.75em;
+    color: var(--grey1);
+  }
+}

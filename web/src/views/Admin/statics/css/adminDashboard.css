@@ -1,0 +1,115 @@
+@import "../../../../utils/colors.css";
+@media only screen and (min-width: 720px) {
+  .admin_root {
+    width: 95% !important;
+    height: 100vh !important;
+    margin: 0px auto !important;
+    position: relative !important;
+    flex-grow: 1 !important;
+  }
+  .admin_mainBar {
+    width: 100% !important;
+    height: 740px !important;
+    margin-top: 35px !important;
+  }
+  .admin_middleContainer {
+    height: 730px !important;
+  }
+  .admin_customCards {
+    height: 330px !important;
+    margin-top: 20px !important;
+    background: var(--white) !important;
+    border-radius: 15px !important;
+    margin: 0px auto !important;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--grey6);
+  }
+  .admin_customCards:hover .admin_imageTextContainer {
+    display: block;
+  }
+  @keyframes textMove {
+    from {
+      right: -100%;
+    }
+    to {
+      right: 0px;
+    }
+  }
+  @keyframes textEffect {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  .admin_compImage {
+    width: 85%;
+    height: 85%;
+    margin: 0px auto;
+    position: relative;
+  }
+  .admin_imageTextContainer {
+    display: none;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    opacity: 0.85;
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    text-align: center;
+    z-index: 1;
+    border-radius: 0px 0px 15px 15px !important;
+    animation: textMove 0.25s ease-out;
+    background: var(--red4);
+  }
+  .admin_imageText {
+    margin: 0px;
+    color: var(--primary);
+    transition-delay: 1s;
+    animation: textEffect 1.25s;
+    font-size: 1.2em;
+  }
+}
+
+@media only screen and (min-width: 1920px) {
+  .admin_root {
+    width: 98% !important;
+    height: 100vh !important;
+    margin: 0px auto !important;
+    position: relative !important;
+    flex-grow: 1 !important;
+  }
+  .admin_mainBar {
+    width: 100% !important;
+    height: 700px !important;
+    margin-top: 35px !important;
+  }
+  .admin_middleContainer {
+    height: 810px !important;
+  }
+  .admin_customCards {
+    height: 420px !important;
+    margin-top: 40px !important;
+    background: var(--white) !important;
+    border-radius: 15px !important;
+    margin: 20px auto !important;
+    cursor: pointer;
+    border: 1px solid var(--grey6);
+  }
+  .admin_compImage {
+    width: 85%;
+    height: 85%;
+    margin: 0px auto;
+  }
+  .admin_imageTextContainer {
+    height: 55px;
+    line-height: 55px;
+  }
+  .admin_imageText {
+    font-size: 1.5em;
+  }
+}

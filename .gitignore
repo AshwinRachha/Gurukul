@@ -1,0 +1,16 @@
+.vim/
+.vscode/
+.idea/
+.env
+.mypy_cache/
+docker-stack.yml
+__pycache__/
+app.egg-info
+node_modules/
+**/migrations/versions/*
+**/whls/*
+static/
+uploaded_files/
+.files/
+!.keep
+.DS_Store

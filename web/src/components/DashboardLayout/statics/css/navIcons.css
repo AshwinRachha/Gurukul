@@ -1,0 +1,35 @@
+@import "../../../../utils/colors.css";
+
+@media only screen and (min-width: 1280px) {
+  .navIcons_container {
+    position: relative !important;
+  }
+  .navIcons_icons {
+    margin: 0px auto !important;
+  }
+  .navIcons_iconStyle {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+  }
+  .navIcons_navTextContainer {
+    width: 60%;
+    font-size: 0.85em;
+    margin: 3px auto auto -5px !important;
+  }
+  .navIcons_navText {
+    margin: 0px auto !important;
+    text-decoration: none;
+    position: relative;
+    color: var(--black);
+  }
+}
+
+@media only screen and (min-width: 1920px) {
+  .navIcons_navTextContainer {
+    margin-left: -2px !important;
+  }
+  .navIcons_navTextContainer {
+    font-size: 1em;
+  }
+}

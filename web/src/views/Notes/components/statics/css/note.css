@@ -1,0 +1,251 @@
+@import "../../../../../utils/colors.css";
+
+@keyframes shake {
+  0% {
+    transform: translate(1px, 1px) rotate(0deg);
+  }
+  20% {
+    transform: translate(-1px, 0px) rotate(1deg);
+  }
+  40% {
+    transform: translate(1px, -1px) rotate(1deg);
+  }
+  60% {
+    transform: translate(-1px, 1px) rotate(0deg);
+  }
+  80% {
+    transform: translate(-1px, -1px) rotate(1deg);
+  }
+  100% {
+    transform: translate(1px, -1px) rotate(-1deg);
+  }
+}
+
+@media only screen and (min-width: 720px) {
+  .note_root {
+    flex-grow: 1;
+    width: 100% !important;
+    height: 700px;
+    position: relative;
+    background: var(--white);
+    border-radius: 20px;
+    border: 1px solid var(--grey6);
+  }
+  .note_notePadTop {
+    width: 100%;
+    height: 60px;
+  }
+  .note_titleTextContainer {
+    margin: 0px;
+    height: 60px;
+    position: relative;
+  }
+  .note_titleText {
+    width: 95% !important;
+    height: 60px;
+    position: relative;
+    font-weight: 600;
+    font-size: 1.4em;
+    cursor: text;
+    position: relative;
+    margin: 0px;
+    margin-left: 30px;
+    outline: none;
+    border: 0;
+  }
+  .note_titleText:focus {
+  }
+  .note_closeButtonContainer {
+    height: 60px;
+  }
+  .note_closeButton {
+    width: 18px;
+    height: 18px;
+    padding: 12px;
+    border-radius: 100%;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    margin: 0;
+  }
+  .note_closeButton:hover {
+    background: var(--red4);
+    background: radial-gradient(
+      circle,
+      rgba(241, 75, 75, 1) 0%,
+      rgba(241, 75, 75, 0.23) 0%
+    );
+  }
+  .note_notePadBot {
+    width: 100%;
+    height: 700px;
+    text-align: justify;
+    position: relative;
+  }
+  .note_tagLabel {
+    margin: 0;
+  }
+  .note_TagCreatorContainer {
+    width: 90%;
+    height: 35px;
+    margin: 10px auto !important;
+  }
+  .note_tagIconContainer {
+    position: relative;
+    top: 3px;
+  }
+  .note_TagIcon {
+    width: 25px;
+    height: 25px;
+  }
+  .note_TagCreatorInside {
+    height: 35px;
+    position: relative;
+  }
+  .note_tagListContainer {
+    height: 35px;
+  }
+  .note_tag {
+    margin-left: 10px !important;
+  }
+  .note_tagPlusButton {
+    width: 20px;
+    height: 20px;
+    margin-left: 15px !important;
+    border-radius: 50%;
+    background-color: var(--white);
+  }
+  .note_tagPlusButton:hover {
+    color: var(--white);
+    background-color: var(--green4);
+  }
+  .note_tagErrorButton {
+    width: 20px;
+    height: 20px;
+    margin-left: 15px !important;
+    border-radius: 50%;
+    color: var(--white);
+    animation: shake 0.2s;
+    background-color: var(--red4);
+  }
+  .note_tagAddInput {
+    width: 80px;
+    height: 28px;
+    position: relative;
+    margin-left: 12px;
+    text-indent: 10px;
+    background-color: var(--grey4);
+    outline: none;
+    border: 0px;
+    top: -3px;
+  }
+  .note_reactQuillContainer {
+    width: 100%;
+  }
+  .note_contentTextContainer {
+    width: 95%;
+    height: 510px;
+    margin: 0px auto !important;
+    text-align: justify;
+    overflow: hidden;
+    overflow-y: auto;
+  }
+  .note_contentText {
+    position: relative;
+    font-size: 1em;
+    line-height: 1.2em;
+  }
+  .note_notePadFooter {
+    width: 100%;
+    height: 65px;
+    margin-top: 20px !important;
+  }
+  .note_timeContainer {
+    position: relative;
+    left: 200px;
+  }
+  .note_timeText {
+    margin: 0;
+    font-weight: 450;
+    font-size: 0.85em;
+    color: var(--secondaryTextColor);
+  }
+  .note_saveButtonContainer {
+    position: absolute;
+    right: 20px;
+  }
+  .note_saveButton {
+    width: 20px;
+    height: 20px;
+    padding: 10px;
+    border-radius: 100%;
+    cursor: pointer;
+  }
+  .note_saveButton:hover {
+    background: var(--green2);
+    background: radial-gradient(
+      circle,
+      rgba(0, 194, 165, 1) 0%,
+      rgba(0, 194, 165, 0.23) 0%
+    );
+  }
+  .note_trashButtonContainer {
+    position: relative;
+    left: 20px;
+  }
+  .note_trashButton {
+    width: 20px;
+    height: 20px;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  .note_trashButton:hover {
+    background: var(--red4);
+    background: radial-gradient(
+      circle,
+      rgba(241, 75, 75, 1) 0%,
+      rgba(241, 75, 75, 0.23) 0%
+    );
+  }
+}
+
+@media only screen and (min-width: 1920px) {
+  .note_root {
+    height: 880px;
+  }
+  .note_notePadTop {
+    height: 80px;
+  }
+  .note_titleTextContainer {
+    height: 80px;
+  }
+  .note_titleText {
+    height: 80px;
+    font-size: 1.5em;
+    margin-left: 40px;
+  }
+  .note_titleText:focus {
+  }
+  .note_closeButton {
+    width: 18px;
+    height: 18px;
+  }
+  .note_notePadBot {
+    height: 750px;
+  }
+  .note_contentTextContainer {
+    height: 670px;
+  }
+  .note_contentText {
+    font-size: 1.1em;
+    line-height: 1.4em;
+  }
+  .note_timeContainer {
+    left: 290px;
+  }
+  .note_timeText {
+    font-size: 0.95em;
+  }
+}

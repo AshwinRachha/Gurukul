@@ -1,0 +1,119 @@
+@import "../../../../utils/colors.css";
+
+@media only screen and (min-width: 720px) {
+  .resetCommon_logoBox {
+    width: 200px;
+    position: absolute;
+    top: 50px;
+    left: 150px;
+  }
+  .resetCommon_label {
+    font-weight: normal;
+    font-size: 1.8em;
+  }
+  .resetCommon_resetBox {
+    width: 450px;
+    height: 600px;
+  }
+  .resetCommon_resetLabel {
+    font-weight: normal;
+    font-size: 2em;
+  }
+  .resetCommon_tabs {
+    display: flex;
+  }
+  .resetCommon_resetButton {
+    width: 160px !important;
+    height: 45px !important;
+    background-color: var(--red4);
+    color: var(--white);
+    border-radius: 15px;
+    font-size: 1.1em !important;
+  }
+  .resetCommon_guestButton {
+    width: 160px !important;
+    height: 45px !important;
+    background-color: var(--black);
+    color: var(--white);
+    border-radius: 15px;
+    font-size: 1.2em !important;
+  }
+  .resetCommon_inputButton {
+    outline: none;
+    border: none;
+    width: 250px !important;
+    border-bottom: 1.5px solid var(--grey2);
+    font-size: 1em;
+    background: transparent;
+  }
+  .resetCommon_lineVertical {
+    width: 1px;
+    height: 30px;
+    background-color: var(--grey2);
+    margin: 0px auto;
+  }
+  .resetCommon_resetButton {
+    width: 160px !important;
+    height: 45px;
+    background-color: var(--red4);
+    color: var(--white);
+    margin: 20px auto;
+    border-radius: 15px;
+    font-size: 1em;
+  }
+  .resetCommon_loginButton {
+    width: 160px !important;
+    height: 45px;
+    background-color: var(--black);
+    color: var(--white);
+    border-radius: 15px;
+    font-size: 1em;
+  }
+  .resetCommon_inputButton {
+    outline: none;
+    border: none;
+    width: 250px !important;
+    height: 50px;
+    border-bottom: 1px solid var(--grey2);
+    font-size: 1.1em;
+    background: transparent;
+  }
+  .resetCommon_line {
+    width: 100px;
+    height: 1px;
+    background-color: var(--grey1);
+    margin: 0px auto;
+  }
+  .resetCommon_lineOr {
+    margin: 0px;
+    padding: 10px;
+    font-size: 1.2em;
+  }
+  .resetCommon_feedBackMessages {
+    margin: 50px;
+  }
+  .resetCommon_feedBackImage {
+    margin-top: 100px !important;
+  }
+}
+
+@media only screen and (min-width: 1920px) {
+  .resetCommon_label {
+    font-size: 2em;
+  }
+  .resetCommon_resetLabel {
+    font-size: 2.2em;
+  }
+  .resetCommon_tabs {
+    display: flex;
+  }
+  .resetCommon_inputButton {
+    width: 280px !important;
+  }
+  .resetCommon_loginButton {
+    font-size: 1.2em;
+  }
+  .resetCommon_inputButton {
+    font-size: 1.2em;
+  }
+}

@@ -1,0 +1,46 @@
+@import "../../../../utils/colors.css";
+
+@media only screen and (min-width: 1280px) {
+  .onlineBox_root {
+    max-height: 800px;
+    border-radius: 25px;
+    position: relative;
+    margin: 0px auto;
+    background: var(--secondary);
+    border: 1px solid var(--grey6);
+  }
+  .onlineBox_titleBar {
+    width: 90%;
+    height: 50px !important;
+    margin: 20px auto !important;
+  }
+  .onlineBox_userlistContainerOuter {
+    height: 500px;
+    overflow-y: scroll;
+    position: relative;
+  }
+  .onlineBox_userlistContainer {
+    width: 100% !important;
+  }
+  .onlineBox_greenDot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--red4);
+    position: relative;
+  }
+  .onlineBox_courseTextTitle {
+    margin: 0px;
+    font-size: 1.5em;
+    font-weight: bold;
+    position: relative;
+    text-indent: 8px;
+  }
+  .onlineBox_miniProfileContainer {
+    position: relative;
+  }
+  .onlineBox_userList {
+  }
+}
+@media only screen and (min-width: 1920px) {
+}

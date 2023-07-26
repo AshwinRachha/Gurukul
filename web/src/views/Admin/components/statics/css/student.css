@@ -1,0 +1,65 @@
+@import "../../../../../utils/colors.css";
+@media only screen and (min-width: 1280px) {
+  .adminStudentBox_root {
+    flex-grow: 1;
+    width: 90% !important;
+    height: 60px;
+    background: var(--white);
+    border-radius: 10px;
+    cursor: pointer;
+    color: var(--black);
+    margin-top: 20px;
+    border: 1px solid var(--grey6);
+  }
+  .adminStudentBox_root:hover {
+    border: 1px solid var(--blue6);
+  }
+  .adminStudentBox_innerContainer {
+    position: relative;
+  }
+
+  .adminStudentBox_studentName {
+    width: 300px;
+    font-weight: 500;
+    font-size: 1.2em;
+  }
+  .adminStudentBox_studentName p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .adminStudentBox_studentNameText {
+    margin: 0;
+  }
+  .adminStudentBox_editButtonContainer {
+    width: 40px;
+    height: 40px;
+    padding: 5px 6px 6px 8px;
+    border-radius: 50%;
+  }
+  .adminStudentBox_editButtonContainer:hover {
+    background: radial-gradient(
+      circle,
+      rgba(241, 75, 75, 1) 0%,
+      rgba(241, 75, 75, 0.23) 0%
+    );
+  }
+  .adminStudentBox_editIcon {
+    width: 26px;
+    height: 26px;
+  }
+}
+
+@media only screen and (min-width: 1920px) {
+  .adminStudentBox_root {
+    height: 70px;
+  }
+  .adminStudentBox_studentName {
+    width: 450px;
+    font-size: 1.3em;
+  }
+  .adminStudentBox_editIcon {
+    width: 30px;
+    height: 30px;
+  }
+}

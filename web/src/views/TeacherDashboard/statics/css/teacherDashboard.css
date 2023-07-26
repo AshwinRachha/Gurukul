@@ -1,0 +1,331 @@
+@import "../../../../utils/colors.css";
+@media only screen and (min-width: 1280px) {
+  .teacherDash_root {
+    width: 98% !important;
+    height: 100vh !important;
+    margin: 0px auto !important;
+    position: relative !important;
+    flex-grow: 1 !important;
+  }
+  .teacherDash_topBar {
+    width: 100% !important;
+    height: 50px !important;
+    margin-top: 20px !important;
+  }
+  .teacherDash_botBar {
+    width: 100% !important;
+    height: 650px !important;
+    margin-top: 20px !important;
+  }
+  .teacherDash_leftContainer {
+    height: 650px !important;
+  }
+  .teacherDash_rightContainer {
+    height: 650px !important;
+  }
+  .teacherDash_activeClassBoxContainer {
+    width: 92% !important;
+    height: 220px;
+    background: var(--white) !important;
+    border-radius: 15px !important;
+    border: 1px solid var(--grey6);
+  }
+  .teacherDash_activeClassBoxContainer {
+    width: 92% !important;
+    height: 220px;
+    border-radius: 15px !important;
+    border: 1px solid var(--grey6);
+  }
+  .teacherDash_activeClassBoxInside {
+  }
+  .teacherDash_activeClassBoxTop {
+  }
+  .teacherDash_middleContainer {
+  }
+
+  .teacherDash_smallRedBox {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--red4);
+    position: relative;
+    margin-left: 20px !important;
+    animation: live 1s infinite ease-in-out !important;
+  }
+  .teacherDash_activeClassTitle {
+    position: relative;
+    left: 15px;
+    font-size: 1.5em;
+    padding: 5px;
+  }
+  .teacherDash_activeClassInside {
+    list-style-type: none;
+  }
+  .teacherDash_activeClassBoxBottom {
+    position: relative;
+    padding: 10px 5px 10px 15px;
+  }
+  .teacherDash_activeClassListContainer {
+    height: 140px;
+    margin: 8px auto auto 20px;
+  }
+  .teacherDash_activeClassListrow1 {
+    height: 140px;
+  }
+
+  .teacherDash_activeClassListrow_col_box {
+    height: 140px;
+    position: relative;
+  }
+
+  .teacherDash_activeClassListrow2 {
+    position: relative;
+    height: 140px;
+  }
+
+  .teacherDash_activeClassListbuttonContainer {
+    position: relative;
+    border: 1px solid var(--red4);
+  }
+
+  .teacherDash_activeClassListrow_col_1 {
+    position: relative;
+    top: -20px;
+  }
+
+  .teacherDash_activeClassListrow_col_2 {
+    position: relative;
+  }
+
+  .teacherDash_activeClassListrow_col_1_bold {
+    margin: 0px;
+    padding: 0px;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--primaryTextColor);
+  }
+
+  .teacherDash_activeClassListrow_col_1_light {
+    margin: 0px;
+    padding: 0px;
+    font-size: 0.8em;
+    font-weight: 600;
+    color: var(--secondaryTextColor);
+  }
+
+  .teacherDash_activeClassListrow_col_2_bold {
+    margin: 0px;
+    padding: 0px;
+    font-size: 0.9em;
+    font-weight: bold;
+    color: var(--primaryTextColor);
+  }
+
+  .teacherDash_activeClassListrow_col_2_light {
+    margin: 0px;
+    padding: 0px;
+    font-size: 0.9em;
+    max-width: 80%;
+    font-weight: 600;
+    color: var(--secondaryTextColor);
+  }
+
+  .teacherDash_activeClassListrow2_bot {
+    position: absolute;
+    bottom: 0px;
+    text-align: right;
+  }
+
+  .teacherDash_activeClassListrow2_bot_text {
+    font-size: 0.9em;
+    color: var(--blue);
+  }
+
+  .teacherDash_activeClassListtimeText {
+    font-size: 1em;
+    font-weight: 400;
+    color: var(--primaryTextColor);
+  }
+  .teacherDashboard_uploadContainer {
+  }
+  .teacherDashboard_uploadWrapper {
+    width: 270px !important;
+  }
+  .teacherDash_attendanceContainer {
+    width: 92% !important;
+    height: 410px !important;
+    margin-top: 15px !important;
+    background: var(--white) !important;
+    border-radius: 15px !important;
+    border: 1px solid var(--grey6);
+  }
+  .teacherDash_discussionBoxContainer {
+    width: 96%;
+    height: 642px !important;
+    margin: 0px auto !important;
+    background: var(--white) !important;
+    border-radius: 15px !important;
+  }
+  .teacherDash_closeButtonContainer {
+    width: 20px;
+    height: 20px;
+  }
+  .teacherDash_closeButton {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    position: relative;
+    left: 40px;
+  }
+  .uploadIcon {
+    margin-top: 5px !important;
+    margin-left: 25px !important;
+    cursor: pointer;
+  }
+  .uploadIcon:hover {
+    color: var(--purple);
+  }
+  .teacherDashboard_bottomPart {
+    border-top: 1px solid var(--grey6);
+  }
+  .teacherDash_userlistContainerOuter {
+    height: inherit;
+    width: inherit;
+  }
+  .teacherDash_userlistContainer {
+    height: 700px;
+    overflow: scroll;
+  }
+  .teacherDash_formBox {
+    width: 85% !important;
+    height: 700px;
+    margin: 0px auto;
+  }
+  .teacherDash_classResourcesBoxContainer {
+    width: 92% !important;
+    height: 415px !important;
+    margin-top: 15px !important;
+    border-radius: 15px !important;
+    border: 1px solid var(--grey6);
+  }
+  .teacherDash_doneAttendanceButton {
+    position: absolute !important;
+    right: 20px !important;
+  }
+  .teacherDash_classResourceBoxInside {
+  }
+  .teacherDash_classResourceBoxTop {
+    position: relative;
+  }
+  .teacherDash_smallPurpleBox {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--purple);
+    position: relative;
+    margin-left: 20px !important;
+  }
+  .teacherDash_classResourceTitle {
+    position: relative;
+    left: 15px;
+    font-size: 1.5em;
+  }
+  .teacherDash_classResourceBoxBottom {
+    height: 415px;
+    overflow-x: scroll;
+  }
+
+  .teacherDashboard_noClassImage {
+    width: 350px !important;
+  }
+  .teacherDashboard_noClassContainer {
+    margin-top: 250px !important;
+  }
+  .teacherDashboard_noClass {
+    width: 400px !important;
+    margin: 0px;
+    margin-top: 50px;
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: 600;
+  }
+  .teacherDashboard_classResourceTitleContainer {
+    width: 140px !important;
+  }
+  .teacherDashboard_smallPurpleBox {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--purple);
+    margin-left: 10px !important;
+  }
+  .teacherDashboard_classResourceTitle {
+    text-indent: 10px;
+    font-size: 1.1em;
+  }
+  .teacherDashboard_classResourceBoxBottom {
+    height: 440px;
+    overflow: hidden;
+    overflow-y: auto;
+  }
+  .teacherDash_uploadIcon {
+    width: 270px;
+    margin-left: 10px !important;
+    margin-top: 5px !important;
+  }
+
+  .teacherDash_submitContainer {
+  }
+  .teacherDash_crossbutton:nth-child(2) {
+    margin-left: 25px !important;
+  }
+  .teacherDash_crossbutton:hover {
+    opacity: 0.8;
+    cursor: pointer;
+  }
+}
+
+@media only screen and (min-width: 1920px) {
+  .teacherDash_topBar {
+    margin-top: 50px !important;
+  }
+  .teacherDash_botBar {
+    height: 860px !important;
+  }
+  .teacherDash_leftContainer {
+    height: 860px !important;
+  }
+  .teacherDash_rightContainer {
+    height: 860px !important;
+  }
+  .teacherDash_activeClassBoxContainer {
+    width: 90% !important;
+    height: 250px;
+  }
+  .teacherDashboard_classResourceTitleContainer {
+    width: 250px !important;
+  }
+  .teacherDashboard_smallPurpleBox {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--purple);
+    margin-left: 10px !important;
+  }
+  .teacherDashboard_classResourceTitle {
+    text-indent: 10px;
+    font-size: 1.5em;
+  }
+  .teacherDashboard_uploadWrapper {
+    width: 100px;
+  }
+  .teacherDash_attendanceContainer {
+    height: 540px !important;
+  }
+  .teacherDash_discussionBoxContainer {
+    height: 860px !important;
+  }
+  .teacherDash_classResourcesBoxContainer {
+    height: 530px !important;
+  }
+}

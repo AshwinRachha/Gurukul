@@ -1,0 +1,30 @@
+@import "../../../../utils/colors.css";
+
+@media only screen and (min-width: 1280px) {
+  .profileBar_root {
+    flex-grow: 1;
+    margin-bottom: 20px;
+  }
+  .profileBar_profileBox {
+    width: 85% !important;
+    margin-top: 5% !important;
+  }
+  .profileBar_courseBox {
+    width: 85% !important;
+    margin-top: 5% !important;
+  }
+  .profileBar_GlobalAlertBox {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+  }
+}
+
+@media only screen and (min-width: 1920px) {
+  .profileBar_profileBox {
+    margin-top: 10% !important;
+  }
+  .profileBar_courseBox {
+    margin-top: 10% !important;
+  }
+}
