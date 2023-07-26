@@ -8,11 +8,17 @@ RUN curl -sSL https://install.python-poetry.org | python3 -
 WORKDIR /app
 
 # Copy the 'pyproject.toml' and 'poetry.lock' files
-COPY backend/pyproject.toml backend/poetry.lock ./
+COPY ./backend/pyproject.toml ./backend/poetry.lock ./backend/
+
+# Go into the backend directory
+WORKDIR /app/backend
 
 # Install dependencies with Poetry
 RUN poetry config virtualenvs.create false \
   && poetry install --no-interaction --no-ansi --no-root
+
+# Go back to the app directory
+WORKDIR /app
 
 # Copy the rest of your app's source code from your host to your image filesystem.
 COPY . .
