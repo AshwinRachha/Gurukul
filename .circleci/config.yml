@@ -15,15 +15,10 @@ jobs:
       - checkout
 
       - run:
-          name: Install Poetry
-          command: |
-            pip install poetry
-
-      - run:
           name: Install Dependencies
           command: |
             cd backend
-            poetry install --no-dev
+            pip install -r requirements.txt
 
       - run:
           name: Run Tests
