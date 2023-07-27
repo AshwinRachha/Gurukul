@@ -1,9 +1,9 @@
-version: 2.1
+version: "2.1"
 
 jobs:
   build:
     docker:
-      - image: docker/compose:1.29.2
+      - image: docker/compose
 
     working_directory: /app
 
