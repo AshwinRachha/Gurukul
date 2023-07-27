@@ -11,11 +11,6 @@ jobs:
       CONFIG_PATH: "etc/dock.yml"
       REDIS_HOST: redis
 
-    services:
-      - name: postgres:13-alpine
-      - name: redis:6-alpine
-      - name: mailhog/mailhog
-
     steps:
       - checkout
 
@@ -39,70 +34,11 @@ jobs:
             python manage.py remake
             python manage.py pytest
 
-  build-backend:
-    docker:
-      - image: docker:latest
-    steps:
-      - checkout
-
-      - setup_remote_docker:
-          version: 20.10.0
-
-      - run:
-          name: Build Backend Image
-          command: |
-            cd backend
-            echo $CI_BUILD_TOKEN | docker login -u "$CI_REGISTRY_USER" --password-stdin $CI_REGISTRY
-            docker build --pull -t "$CI_REGISTRY_IMAGE/backend" .
-            docker push "$CI_REGISTRY_IMAGE/backend"
-
-  build-file-server:
-    docker:
-      - image: docker:latest
-    steps:
-      - checkout
-
-      - setup_remote_docker:
-          version: 20.10.0
-
-      - run:
-          name: Build File Server Image
-          command: |
-            cd file_server
-            echo $CI_BUILD_TOKEN | docker login -u "$CI_REGISTRY_USER" --password-stdin $CI_REGISTRY
-            docker build --pull -t "$CI_REGISTRY_IMAGE/file_server" .
-            docker push "$CI_REGISTRY_IMAGE/file_server"
-
-  build-web:
-    docker:
-      - image: docker:latest
-    steps:
-      - checkout
-
-      - setup_remote_docker:
-          version: 20.10.0
-
-      - run:
-          name: Build Web Images
-          command: |
-            cd web
-            echo $CI_BUILD_TOKEN | docker login -u "$CI_REGISTRY_USER" --password-stdin $CI_REGISTRY
-            docker build --no-cache --pull -t "$CI_REGISTRY_IMAGE/web:latest" .
-            docker push "$CI_REGISTRY_IMAGE/web:latest"
-            docker build --no-cache --build-arg TARGET_BUILD_ENV=local --pull -t "$CI_REGISTRY_IMAGE/web:local" .
-            docker push "$CI_REGISTRY_IMAGE/web:local"
-
 workflows:
   version: 2.1
   build-and-test:
     jobs:
-      - test-backend
-      - build-backend:
-          requires:
-            - test-backend
-      - build-file-server:
-          requires:
-            - test-backend
-      - build-web:
-          requires:
-            - test-backend
+      - test-backend:
+          filters:
+            branches:
+              only: main
