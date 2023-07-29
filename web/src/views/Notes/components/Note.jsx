@@ -5,13 +5,9 @@ import { ImCross } from "react-icons/im";
 import { FiTrash } from "react-icons/fi";
 import { RiSendPlane2Fill } from "react-icons/ri";
 import "./statics/css/note.css";
+
 import CustomButton from "../../../components/CustomButton";
 import Tag from "./Tag";
-import ReactQuill from "react-quill";
-import Delta from "quill-delta";
-import "react-quill/dist/quill.snow.css";
-import "./statics/css/quill.css";
-import { formats, modules } from "../../../utils/quillConfig";
 import IconProvider from "../../../components/IconProvider";
 
 const Note = ({
@@ -27,32 +23,20 @@ const Note = ({
 }) => {
   const [tagClass, setTagClass] = useState(true);
   const [titleText, setTitleText] = useState("");
-  const [contentText, setContentText] = useState(new Delta(content));
+  const [contentText, setContentText] = useState(content);
   const [stateTag, setStateTag] = useState([]);
   const [isTagCreator, setTagCreator] = useState(false);
   const [inputTag, setInputTag] = useState("");
+  
   useEffect(() => {
     setStateTag(tags);
-  }, [tags]);
-
-  useEffect(() => {
-    setTagCreator(false);
-    setContentText(new Delta(content));
-  }, [content]);
-
-  useEffect(() => {
     setTitleText(title);
-  }, [title]);
+    setContentText(content);
+  }, [tags, title, content]);
 
   const handleRemoveTag = (tagValue) => {
-    var filtered = stateTag.filter(function (value) {
-      return value !== tagValue;
-    });
-    if (filtered && filtered.length !== 0) {
-      setStateTag(filtered);
-    } else {
-      setStateTag([]);
-    }
+    const filtered = stateTag.filter((value) => value !== tagValue);
+    setStateTag(filtered);
   };
 
   const handleCreateTag = () => {
@@ -61,9 +45,7 @@ const Note = ({
   };
 
   const handleSubmitTag = () => {
-    let upperCased = stateTag.map((f) => {
-      return f.toUpperCase();
-    });
+    const upperCased = stateTag.map((f) => f.toUpperCase());
     if (inputTag && !upperCased.includes(inputTag.toUpperCase())) {
       setStateTag((currentTag) => [...currentTag, inputTag]);
       setInputTag("");
@@ -122,16 +104,15 @@ const Note = ({
                   direction="row"
                   className="note_tagListContainer"
                 >
-                  {stateTag &&
-                    stateTag.map((tagValue, index) => (
-                      <Grid item className="note_tag" key={index}>
-                        <Tag
-                          key={index}
-                          tagName={tagValue}
-                          onDelete={handleRemoveTag}
-                        />
-                      </Grid>
-                    ))}
+                  {stateTag.map((tagValue, index) => (
+                    <Grid item className="note_tag" key={index}>
+                      <Tag
+                        key={index}
+                        tagName={tagValue}
+                        onDelete={handleRemoveTag}
+                      />
+                    </Grid>
+                  ))}
                 </Grid>
               </Grid>
               <Grid item>
@@ -164,15 +145,10 @@ const Note = ({
           </Grid>
 
           <Grid item className="note_contentTextContainer">
-            <ReactQuill
-              theme="snow"
-              modules={modules}
-              format={formats}
+            <textarea
               value={contentText}
+              onChange={(e) => setContentText(e.target.value)}
               className="note_reactQuillContainer"
-              onChange={(content, delta, source, editor) => {
-                setContentText(editor.getContents());
-              }}
             />
           </Grid>
         </Grid>
@@ -207,4 +183,5 @@ const Note = ({
     </Grid>
   );
 };
+
 export default Note;
