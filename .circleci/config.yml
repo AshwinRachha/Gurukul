@@ -21,7 +21,9 @@ jobs:
       # For example, you can add the following lines to run tests with pytest:
       - run:
           name: Run tests
-          command: docker-compose exec backend pytest tests
+          command: |
+            export _JAVA_OPTIONS="-Xmx3g"
+            docker-compose exec backend pytest tests
 
       # Additional build steps, if needed
 
