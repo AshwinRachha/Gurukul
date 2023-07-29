@@ -19,9 +19,9 @@ jobs:
 
       # Run your tests or build steps here
       # For example, you can add the following lines to run tests with pytest:
-      # - run:
-      #     name: Run tests
-      #     command: docker-compose exec backend pytest
+      - run:
+          name: Run tests
+          command: docker-compose exec backend pytest tests
 
       # Additional build steps, if needed
 
