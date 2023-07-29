@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>Sikshyalaya</h1>
+  <h1>Gurukul</h1>
 <p>
   Crossplatform Education Portal for Modern Classrooms
 </p>
