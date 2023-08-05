@@ -31,8 +31,9 @@ jobs:
             pip3 install -r backend/requirements.txt  
       - run:  
           name: Run pytest  
-          command: |  
-            pytest  
+          command: |
+            cd backend/tests  
+            pytest
   
 
 workflows:
