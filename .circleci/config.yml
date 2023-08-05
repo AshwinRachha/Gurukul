@@ -16,21 +16,24 @@ jobs:
       - run:
           name: Start Docker Compose services
           command: docker-compose up -d
-
-      # Run your tests or build steps here
-      # For example, you can add the following lines to run tests with pytest:
-      - run:
-          name: Run tests
-          command: |
-            export _JAVA_OPTIONS="-Xmx3g"
-            docker-compose exec backend pytest tests
-
-      # Additional build steps, if needed
-
-      # Stop Docker Compose services after the build
+              # Stop Docker Compose services after the build
       - run:
           name: Stop Docker Compose services
           command: docker-compose down
+
+      # Run your tests or build steps here
+      - run:  
+          name: Install dependencies  
+          command: |  
+            pip install -r backend/requirements.txt  
+  
+      - run:  
+          name: Run pytest  
+          command: |  
+            pytest  
+  
+
+
 
 workflows:
   version: 2
