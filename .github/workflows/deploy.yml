@@ -28,6 +28,9 @@ jobs:
         with:
           node-version: lts/*
 
+      - name: Change to web directory
+        run: cd web
+
       - name: Build step
         run: "npm install && npm run build" # 📝 Update the build command(s) if necessary
 
@@ -36,4 +39,4 @@ jobs:
         with:
           project: "hungry-duck-48"
           entrypoint: "index.js" # 📝 Update the entrypoint if necessary
-          root: "." # 📝 Update the root if necessary
+          root: "web" # 📝 Update the root if necessary
