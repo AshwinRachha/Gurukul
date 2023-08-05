@@ -21,6 +21,11 @@ jobs:
           name: Stop Docker Compose services
           command: docker-compose down
 
+      # Install pip
+      - run:
+          name: Install pip
+          command: curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python get-pip.py
+
       # Run your tests or build steps here
       - run:  
           name: Install dependencies  
