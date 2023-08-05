@@ -30,10 +30,6 @@ jobs:
           command: |  
             cd backend
             pip3 install -r requirements.txt  
-      - run:  
-          name: Run pytest  
-          command: |
-            cd backend
             python3 manage.py pytest
   
 
