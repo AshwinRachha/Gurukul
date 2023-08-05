@@ -33,7 +33,7 @@ jobs:
           name: Run pytest  
           command: |
             cd backend
-            python manage.py pytest
+            python3 manage.py pytest
   
 
 workflows:
