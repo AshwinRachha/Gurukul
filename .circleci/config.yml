@@ -29,6 +29,7 @@ jobs:
           name: Install dependencies  
           command: |  
             cd backend
+            sudo apt-get install gcc python3-dev musl-dev
             pip3 install -r requirements.txt  
             python3 manage.py pytest
   
