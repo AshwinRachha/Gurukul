@@ -32,8 +32,8 @@ jobs:
       - run:  
           name: Run pytest  
           command: |
-            cd backend/tests  
-            pytest
+            cd backend
+            python manage.py pytest
   
 
 workflows:
