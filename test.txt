@@ -1,0 +1,37 @@
+FROM python:3.9-alpine AS builder
+
+WORKDIR /app
+
+COPY ./pyproject.toml .
+COPY ./poetry.lock .
+
+RUN apk add gcc musl-dev python3-dev libffi-dev openssl-dev cargo g++ libxslt-dev postgresql-dev build-base
+RUN apt update
+RUN apt install redis-server
+RUN redis-server --daemonize yes
+RUN redis-cli ping
+
+RUN apt-get install postgresql
+RUN service postgresql start
+RUN apt-get -y install postgresql
+
+RUN pip install poetry
+RUN poetry export --without-hashes -f requirements.txt --output requirements.txt
+RUN pip install -U -q pyngrok ipython psycopg2 alembic
+
+RUN sudo -u postgres psql -c "CREATE USER postadmin WITH PASSWORD 'postpass'";
+RUN sudo -u postgres psql -c "CREATE DATABASE siksalaya;"
+RUN sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE sikshyalaya TO postadmin;"
+
+RUN alembic revision --autogenerate -m "migrations"
+RUN alembic upgrade head
+FROM python:3.9-alpine
+RUN apk add libpq
+
+WORKDIR /app
+COPY ./ .
+#RUN mv ./misc/etc/gunicorn.conf.py .
+
+EXPOSE 7860
+
+CMD ["gunicorn", "main:app", "-w", "4", "--bind", "127.0.0.1:7860"]

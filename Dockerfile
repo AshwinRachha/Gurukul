@@ -60,3 +60,5 @@ RUN pip install gunicorn
 
 # Start the FastAPI server and React frontend web server using `concurrently`
 CMD ["gunicorn", "main:app", "-w", "4", "--bind", "0.0.0.0:8000", "&", "npm", "start", "--prefix", "web"]
+
+
