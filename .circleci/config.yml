@@ -1,6 +1,6 @@
-  version: 2.1
-  jobs:
-    testbackend:
+version: 2.1
+jobs:
+  testbackend:
     docker:
       - image: cimg/python:3.10
         environment:
@@ -25,9 +25,8 @@
             python manage.py remake
             python manage.py pytest
 
-
-  workflows:
-    version: 2
-    pipeline:
-      jobs:
-        - test-backend
+workflows:
+  version: 2
+  pipeline:
+    jobs:
+      - testbackend
