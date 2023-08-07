@@ -1,23 +1,11 @@
   version: 2.1
-
-  executors:
-    docker-executor:
-      docker:
-        - image: docker:latest
-          environment:
-            POSTGRES_DB: sikshyalaya
-            POSTGRES_USER: postadmin
-            POSTGRES_PASSWORD: postpass
-            CONFIG_PATH: etc/dock.yml
-            REDIS_HOST: redis
-
   jobs:
     testbackend:
     docker:
       - image: cimg/python:3.10
         environment:
           POSTGRES_DB: sikshyalaya
-          POSTGRES_USER: postadmin
+          POSTGRES_USER: postadmina
           POSTGRES_PASSWORD: postpass
           CONFIG_PATH: etc/dock.yml
           REDIS_HOST: redis
