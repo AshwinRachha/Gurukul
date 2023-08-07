@@ -1,94 +1,89 @@
-version: 2.1
+  version: 2.1
 
-executors:
-  docker-executor:
+  executors:
+    docker-executor:
+      docker:
+        - image: docker:latest
+          environment:
+            POSTGRES_DB: sikshyalaya
+            POSTGRES_USER: postadmin
+            POSTGRES_PASSWORD: postpass
+            CONFIG_PATH: etc/dock.yml
+            REDIS_HOST: redis
+
+  jobs:
+    testbackend:
     docker:
-      - image: docker:latest
+      - image: cimg/python:3.10
         environment:
           POSTGRES_DB: sikshyalaya
           POSTGRES_USER: postadmin
           POSTGRES_PASSWORD: postpass
           CONFIG_PATH: etc/dock.yml
           REDIS_HOST: redis
-
-jobs:
-  test-backend:
-    executor: docker-executor
     steps:
-      - setup_remote_docker
       - checkout
       - run:
-          name: Install Dependencies
+          name: Install dependencies
           command: |
+            sudo apt-get update
+            sudo apt-get install -y curl
             curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
             source $HOME/.poetry/env
             cd backend && poetry config virtualenvs.create false && poetry install --no-dev
+      - run:
+          name: Run tests
+          command: |
             python manage.py remake
             python manage.py pytest
 
-  build-backend:
-    executor: docker-executor
-    steps:
-      - setup_remote_docker
-      - checkout
-      - run:
-          name: Build and push Docker image
-          command: |
-            echo $CI_BUILD_TOKEN | docker login -u "$CI_REGISTRY_USER" --password-stdin $CI_REGISTRY
-            cd backend
-            docker build --pull -t "$CI_REGISTRY_IMAGE/backend" .
-            docker push "$CI_REGISTRY_IMAGE/backend"
+    build-backend:
+      executor: docker-executor
+      steps:
+        - setup_remote_docker
+        - checkout
+        - run:
+            name: Build and push Docker image
+            command: |
+              echo $CI_BUILD_TOKEN | docker login -u "$CI_REGISTRY_USER" --password-stdin $CI_REGISTRY
+              cd backend
+              docker build --pull -t "$CI_REGISTRY_IMAGE/backend" .
+              docker push "$CI_REGISTRY_IMAGE/backend"
 
-  build-file-server:
-    executor: docker-executor
-    steps:
-      - setup_remote_docker
-      - checkout
-      - run:
-          name: Build and push Docker image
-          command: |
-            echo $CI_BUILD_TOKEN | docker login -u "$CI_REGISTRY_USER" --password-stdin $CI_REGISTRY
-            cd file_server
-            docker build --pull -t "$CI_REGISTRY_IMAGE/file_server" .
-            docker push "$CI_REGISTRY_IMAGE/file_server"
+    build-file-server:
+      executor: docker-executor
+      steps:
+        - setup_remote_docker
+        - checkout
+        - run:
+            name: Build and push Docker image
+            command: |
+              echo $CI_BUILD_TOKEN | docker login -u "$CI_REGISTRY_USER" --password-stdin $CI_REGISTRY
+              cd file_server
+              docker build --pull -t "$CI_REGISTRY_IMAGE/file_server" .
+              docker push "$CI_REGISTRY_IMAGE/file_server"
 
-  build-web:
-    executor: docker-executor
-    steps:
-      - setup_remote_docker
-      - checkout
-      - run:
-          name: Build and push Docker image
-          command: |
-            echo $CI_BUILD_TOKEN | docker login -u "$CI_REGISTRY_USER" --password-stdin $CI_REGISTRY
-            cd web
-            docker build --no-cache --pull -t "$CI_REGISTRY_IMAGE/web:latest" .
-            docker push "$CI_REGISTRY_IMAGE/web:latest"
-            docker build --no-cache --build-arg TARGET_BUILD_ENV=local --pull -t "$CI_REGISTRY_IMAGE/web:local" .
-            docker push "$CI_REGISTRY_IMAGE/web:local"
+    build-web:
+      executor: docker-executor
+      steps:
+        - setup_remote_docker
+        - checkout
+        - run:
+            name: Build and push Docker image
+            command: |
+              echo $CI_BUILD_TOKEN | docker login -u "$CI_REGISTRY_USER" --password-stdin $CI_REGISTRY
+              cd web
+              docker build --no-cache --pull -t "$CI_REGISTRY_IMAGE/web:latest" .
+              docker push "$CI_REGISTRY_IMAGE/web:latest"
+              docker build --no-cache --build-arg TARGET_BUILD_ENV=local --pull -t "$CI_REGISTRY_IMAGE/web:local" .
+              docker push "$CI_REGISTRY_IMAGE/web:local"
 
-  deploy:
-    executor: docker-executor
-    steps:
-      - setup_remote_docker
-      - checkout
-      - run:
-          name: Deploy application
-          command: |
-            mkdir -p ~/.ssh
-            chmod 700 ~/.ssh
-            echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
-            echo "$DEPLOY_PRIVATE_KEY" > ~/.ssh/id_rsa
-            chmod 600 ~/.ssh/id_rsa
-            echo $DEPLOY_SSH_HOST
-            ssh -tt daze@$DEPLOY_SSH_HOST 'cd ~/app && docker-compose down && docker-compose pull && docker-compose up -d'
-
-workflows:
-  version: 2
-  pipeline:
-    jobs:
-      - test-backend
-      - build-backend
-      - build-file-server
-      - build-web
-      - deploy
+  workflows:
+    version: 2
+    pipeline:
+      jobs:
+        - test-backend
+        - build-backend
+        - build-file-server
+        - build-web
+        - deploy
