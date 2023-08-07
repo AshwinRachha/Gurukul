@@ -16,6 +16,9 @@ jobs:
           command: |
             sudo apt-get update
             sudo apt-get install -y curl
+            sudo apt-get install libcurl4-openssl-dev
+            sudo apt-get install libssl-dev
+            sudo apt-get install python3-pip
             curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
             source $HOME/.poetry/env
             cd backend && poetry config virtualenvs.create false && poetry install --no-dev
