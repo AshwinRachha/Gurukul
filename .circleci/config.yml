@@ -1,33 +1,94 @@
-jobs:
-  build:
+version: 2.1
+
+executors:
+  docker-executor:
     docker:
-      - image: docker/compose:1.29.2
+      - image: docker:latest
+        environment:
+          POSTGRES_DB: sikshyalaya
+          POSTGRES_USER: postadmin
+          POSTGRES_PASSWORD: postpass
+          CONFIG_PATH: etc/dock.yml
+          REDIS_HOST: redis
 
-    working_directory: /app
-
+jobs:
+  test-backend:
+    executor: docker-executor
     steps:
-      - setup_remote_docker  # Enable Docker within CircleCI
-
+      - setup_remote_docker
       - checkout
+      - run:
+          name: Install Dependencies
+          command: |
+            curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
+            source $HOME/.poetry/env
+            cd backend && poetry config virtualenvs.create false && poetry install --no-dev
+            python manage.py remake
+            python manage.py pytest
 
-
-      # Run your tests or build steps here
-      - run:  
-          name: Install Python and pip  
-          command: |  
-            apk update
-            apk add python3 py3-pip
-      - run:  
-          name: Install dependencies  
-          command: |  
+  build-backend:
+    executor: docker-executor
+    steps:
+      - setup_remote_docker
+      - checkout
+      - run:
+          name: Build and push Docker image
+          command: |
+            echo $CI_BUILD_TOKEN | docker login -u "$CI_REGISTRY_USER" --password-stdin $CI_REGISTRY
             cd backend
-            apk add gcc
-            pip3 install -r requirements.txt  
-            python3 manage.py pytest
-  
+            docker build --pull -t "$CI_REGISTRY_IMAGE/backend" .
+            docker push "$CI_REGISTRY_IMAGE/backend"
+
+  build-file-server:
+    executor: docker-executor
+    steps:
+      - setup_remote_docker
+      - checkout
+      - run:
+          name: Build and push Docker image
+          command: |
+            echo $CI_BUILD_TOKEN | docker login -u "$CI_REGISTRY_USER" --password-stdin $CI_REGISTRY
+            cd file_server
+            docker build --pull -t "$CI_REGISTRY_IMAGE/file_server" .
+            docker push "$CI_REGISTRY_IMAGE/file_server"
+
+  build-web:
+    executor: docker-executor
+    steps:
+      - setup_remote_docker
+      - checkout
+      - run:
+          name: Build and push Docker image
+          command: |
+            echo $CI_BUILD_TOKEN | docker login -u "$CI_REGISTRY_USER" --password-stdin $CI_REGISTRY
+            cd web
+            docker build --no-cache --pull -t "$CI_REGISTRY_IMAGE/web:latest" .
+            docker push "$CI_REGISTRY_IMAGE/web:latest"
+            docker build --no-cache --build-arg TARGET_BUILD_ENV=local --pull -t "$CI_REGISTRY_IMAGE/web:local" .
+            docker push "$CI_REGISTRY_IMAGE/web:local"
+
+  deploy:
+    executor: docker-executor
+    steps:
+      - setup_remote_docker
+      - checkout
+      - run:
+          name: Deploy application
+          command: |
+            mkdir -p ~/.ssh
+            chmod 700 ~/.ssh
+            echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+            echo "$DEPLOY_PRIVATE_KEY" > ~/.ssh/id_rsa
+            chmod 600 ~/.ssh/id_rsa
+            echo $DEPLOY_SSH_HOST
+            ssh -tt daze@$DEPLOY_SSH_HOST 'cd ~/app && docker-compose down && docker-compose pull && docker-compose up -d'
 
 workflows:
   version: 2
-  build_workflow:
+  pipeline:
     jobs:
-      - build
+      - test-backend
+      - build-backend
+      - build-file-server
+      - build-web
+      - deploy

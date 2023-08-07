@@ -1,0 +1,63 @@
+name: Python application test
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'backend/**'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'backend/**'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:13-alpine
+        env:
+          POSTGRES_DB: sikshyalaya
+          POSTGRES_USER: postadmin
+          POSTGRES_PASSWORD: postpass
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+      redis:
+        image: redis:6-alpine
+        ports:
+          - 6379:6379
+        options: --entrypoint redis-server
+      mailhog:
+        image: mailhog/mailhog
+        ports:
+          - 8025:8025
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Python 3.x
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install Dependencies
+      run: |
+        curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
+        source $HOME/.poetry/env
+        cd backend && poetry config virtualenvs.create false && poetry install --no-dev
+
+    - name: Test with pytest
+      run: |
+        python manage.py remake
+        python manage.py pytest
+      env:
+        POSTGRES_DB: sikshyalaya
+        POSTGRES_USER: postadmin
+        POSTGRES_PASSWORD: postpass
+        CONFIG_PATH: etc/dock.yml
+        REDIS_HOST: redis
