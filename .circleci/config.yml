@@ -37,53 +37,9 @@
             python manage.py remake
             python manage.py pytest
 
-    build-backend:
-      executor: docker-executor
-      steps:
-        - setup_remote_docker
-        - checkout
-        - run:
-            name: Build and push Docker image
-            command: |
-              echo $CI_BUILD_TOKEN | docker login -u "$CI_REGISTRY_USER" --password-stdin $CI_REGISTRY
-              cd backend
-              docker build --pull -t "$CI_REGISTRY_IMAGE/backend" .
-              docker push "$CI_REGISTRY_IMAGE/backend"
-
-    build-file-server:
-      executor: docker-executor
-      steps:
-        - setup_remote_docker
-        - checkout
-        - run:
-            name: Build and push Docker image
-            command: |
-              echo $CI_BUILD_TOKEN | docker login -u "$CI_REGISTRY_USER" --password-stdin $CI_REGISTRY
-              cd file_server
-              docker build --pull -t "$CI_REGISTRY_IMAGE/file_server" .
-              docker push "$CI_REGISTRY_IMAGE/file_server"
-
-    build-web:
-      executor: docker-executor
-      steps:
-        - setup_remote_docker
-        - checkout
-        - run:
-            name: Build and push Docker image
-            command: |
-              echo $CI_BUILD_TOKEN | docker login -u "$CI_REGISTRY_USER" --password-stdin $CI_REGISTRY
-              cd web
-              docker build --no-cache --pull -t "$CI_REGISTRY_IMAGE/web:latest" .
-              docker push "$CI_REGISTRY_IMAGE/web:latest"
-              docker build --no-cache --build-arg TARGET_BUILD_ENV=local --pull -t "$CI_REGISTRY_IMAGE/web:local" .
-              docker push "$CI_REGISTRY_IMAGE/web:local"
 
   workflows:
     version: 2
     pipeline:
       jobs:
         - test-backend
-        - build-backend
-        - build-file-server
-        - build-web
-        - deploy
